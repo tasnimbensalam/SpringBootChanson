@@ -40,16 +40,18 @@ public class SecurityConfig {
 	 }
 	 }))
 
-	 .authorizeHttpRequests( requests -> requests
+	 .authorizeHttpRequests() 
+          .anyRequest().permitAll();
+	/*requests -> requests
+	  .requestMatchers("/api/all/**").hasAnyAuthority("ADMIN","USER")
 
-	.requestMatchers("/api/all/**").hasAnyAuthority("ADMIN","USER")
 	.requestMatchers(HttpMethod.GET,"/api/getbyid/**").hasAnyAuthority("ADMIN","USER")
 	.requestMatchers(HttpMethod.POST,"/api/addchan/**").hasAnyAuthority("ADMIN")
 	.requestMatchers(HttpMethod.PUT,"/api/updatechan/**").hasAuthority("ADMIN")
 	.requestMatchers(HttpMethod.DELETE,"/api/delchan/**").hasAuthority("ADMIN")
 	.anyRequest().authenticated() )
 	.addFilterBefore(new JWTAuthorizationFilter(),
-	 UsernamePasswordAuthenticationFilter.class);
+	 UsernamePasswordAuthenticationFilter.class);*/
 	return http.build();
 	}
 }

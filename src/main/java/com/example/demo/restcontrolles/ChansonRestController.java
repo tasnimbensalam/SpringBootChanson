@@ -30,10 +30,12 @@ public class ChansonRestController{
 		return chansonService.getChanson(id);
 	}
 	@RequestMapping(path="/addchan",method = RequestMethod.POST)
-	@PreAuthorize("hasAuthority('ADMIN')")
+	//@PreAuthorize("hasAuthority('ADMIN')")
 	public Chanson createChanson(@RequestBody Chanson chanson) {
 	return chansonService.saveChanson(chanson);
 	}
+	
+	
 	@RequestMapping(path="/updatechan",method = RequestMethod.PUT)
 	public Chanson updateChanson(@RequestBody Chanson chanson) {
 	return chansonService.updateChanson(chanson);

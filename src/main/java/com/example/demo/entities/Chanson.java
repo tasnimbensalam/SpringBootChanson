@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Chanson {
@@ -15,7 +16,8 @@ public class Chanson {
 	private String titreChanson;
 	private Double dureeChanson;  
 	 
-	
+	 @OneToOne
+	 private Image image;
 	@ManyToOne
 	private Album album;    
 
