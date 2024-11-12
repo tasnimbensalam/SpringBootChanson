@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,9 +48,20 @@ public class ChansonServiceImpl implements ChansonService {
 
 	@Override
 	public void deleteChansonById(Long id) {
-		chansonRepository.deleteById(id);
+	 Chanson c = getChanson(id);
+	 imageRepository.deleteById(id);
+	 //suuprimer l'image avant de supprimer le produit
+	try {
+	Files.delete(Paths.get(System.getProperty("user.home")+"/images/"+c.getImagePath()));
+	} catch (IOException e) {
+	e.printStackTrace();
+	}
+	chansonRepository.deleteById(id);
 	}
 
+	
+	
+	
 	@Override
 	public Chanson getChanson(Long id) {
 		return chansonRepository.findById(id).get();
