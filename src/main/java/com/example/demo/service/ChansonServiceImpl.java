@@ -1,13 +1,17 @@
 package com.example.demo.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.entities.Album;
 import com.example.demo.entities.Chanson;
+import com.example.demo.entities.Image;
 import com.example.demo.repos.ChansonRepository;
+import com.example.demo.repos.ImageRepository;
 
 
 
@@ -21,10 +25,18 @@ public class ChansonServiceImpl implements ChansonService {
 	public Chanson saveChanson(Chanson c) {
 		return chansonRepository.save(c);
 	}
-
+	 @Autowired
+	 ImageRepository imageRepository;
 	@Override
 	public Chanson updateChanson(Chanson c) {
-		return chansonRepository.save(c);
+				//Long oldProdImageId =this.getChanson(c.getIdChanson()).getImage().getIdImage();
+				//Long newProdImageId = c.getImage().getIdImage();
+				Chanson prodUpdated = chansonRepository.save(c);
+				//if (oldProdImageId != newProdImageId)
+				//imageRepository.deleteById(oldProdImageId);
+				return prodUpdated;
+
+		
 	}
 
 	@Override
@@ -81,6 +93,5 @@ public class ChansonServiceImpl implements ChansonService {
 	public List<Chanson> trierChansonsTitresDuree() {
 		return chansonRepository.trierChansonsTitresDuree();
 	}
-
 
 }

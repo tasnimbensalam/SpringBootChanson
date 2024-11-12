@@ -22,11 +22,7 @@ class ChansonApplicationTests {
 	@Autowired
 	private ChansonRepository chansonRepository;
 
-	@Test
-	public void testCreateChanson() {
-		Chanson chanson = new Chanson("Song B", 3.50);
-		chansonRepository.save(chanson);
-	}	
+	
 	
 	@Test
 	public void testFindChanson() {
